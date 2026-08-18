@@ -1,0 +1,30 @@
+version: '1.0'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: jodatolo/order-system-api:1.0.0
+    command: mvn spring-boot:run
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/order-management-system
+      - order-management-system/External Libraries
+    working_dir: ../order-management-system
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
+  db:
+    image: postgres:18-alpine
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
