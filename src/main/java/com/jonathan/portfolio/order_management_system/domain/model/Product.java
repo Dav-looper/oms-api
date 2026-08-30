@@ -10,18 +10,18 @@ public class Product {
     private String name;
     private Money price;
 
-    public Product(UUID id, String name, Money price) {
+    public Product(String name, Money price) {
         this.id = UUID.randomUUID();
         this.name = Objects.requireNonNull(name, "Product name cannot be null").trim();
-        this.price = Objects.requireNonNull(price, "El precio no puede ser nulo");
+        this.price = Objects.requireNonNull(price, "Product price cannot be null");
     }
 
     public Money getPrice() {
         return price;
     }
 
-    public Product addDiscount(BigDecimal discount) {
-        return new Product(this.id, this.name, this.price.operateDiscount(discount));
+    public void addDiscount(BigDecimal discount) {
+        this.price = this.price.operateDiscount(discount);
     }
 
     public UUID getId() {

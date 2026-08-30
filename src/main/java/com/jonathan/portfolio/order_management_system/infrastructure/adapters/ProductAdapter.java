@@ -14,7 +14,6 @@ public class ProductAdapter implements ProductPort {
 
     @Override
     public ProductEntity save(Product product) {
-
-        return jpaProductRepository.save();
+        return null;
     }
 }

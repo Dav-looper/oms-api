@@ -7,7 +7,7 @@ import java.util.Objects;
 public record Money(BigDecimal amount, Currency currency) {
     public Money {
         if (amount == null || currency == null) {
-            throw new IllegalArgumentException("Ninguno de los campos puede ser nulo");
+            throw new IllegalArgumentException("Either the amount or currency cannot be null");
         }
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("The amount of money can't be negative");
@@ -19,16 +19,16 @@ public record Money(BigDecimal amount, Currency currency) {
     }
 
     public Money operateDiscount(BigDecimal discountBetwenZeroAndOne) {
-        Objects.requireNonNull(discountBetwenZeroAndOne, "El descuento no puede ser nulo");
+        Objects.requireNonNull(discountBetwenZeroAndOne, "Discount cannot be null");
         if (discountBetwenZeroAndOne.compareTo(BigDecimal.ZERO) < 0 || discountBetwenZeroAndOne.compareTo(BigDecimal.ONE) > 0) {
-            throw new IllegalArgumentException("el descuento no puede ser menor a 0 ni mayor a 1, use decimales");
+            throw new IllegalArgumentException("Discount must be a decimal between zero and one");
         }
         return new Money(this.amount.multiply(BigDecimal.ONE.subtract(discountBetwenZeroAndOne)), this.currency);
     }
 
     public Money sum(Money money) {
         if (!(this.currency.equals(money.currency))) {
-            throw new IllegalArgumentException("La monedas deben ser iguales");
+            throw new IllegalArgumentException("The currency must be the same");
         }
         return new Money(this.amount.add(money.amount), this.currency);
     }

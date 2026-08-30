@@ -10,5 +10,7 @@ public class CreateProductUseCase {
         this.productPort = productPort;
     }
 
-    public Product execute() {};
+    public Product execute() {
+        return null;
+    };
 }
