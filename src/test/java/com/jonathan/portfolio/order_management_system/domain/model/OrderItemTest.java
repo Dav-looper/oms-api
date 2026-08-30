@@ -12,7 +12,7 @@ public class OrderItemTest {
     @Test
     void shouldThrowExceptionWhenQuantityIsZero() {
         //Arrange
-        Product product1 = new Product(UUID.randomUUID(), "arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
+        Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
 
         //Act
         //Assert
@@ -22,7 +22,7 @@ public class OrderItemTest {
     @Test
     void shouldThrowExceptionWhenQuantityIsNegative() {
         //Arrange
-        Product product1 = new Product(UUID.randomUUID(), "arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
+        Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
 
         //Act
         //Assert
@@ -41,7 +41,7 @@ public class OrderItemTest {
     @Test
     void shouldRejectNullUnitPrice() {
         //Arrange
-        Product product1 = new Product(UUID.randomUUID(), "arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
+        Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
         //Act
         //Assert
         Assertions.assertThrows(NullPointerException.class, () -> { new OrderItem(null, 2, null); }, "Doesn't throw Exception when unit price is null");
