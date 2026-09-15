@@ -10,7 +10,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     ProductEntity domainEntityToJpaEntity(Product product);
 

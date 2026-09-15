@@ -28,6 +28,10 @@ public class Product {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Currency getCurrency() {
         return price.getCurrency();
     }
