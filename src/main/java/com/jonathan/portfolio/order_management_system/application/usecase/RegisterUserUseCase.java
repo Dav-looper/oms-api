@@ -1,16 +1,16 @@
 package com.jonathan.portfolio.order_management_system.application.usecase;
 
 import com.jonathan.portfolio.order_management_system.domain.model.User;
-import com.jonathan.portfolio.order_management_system.domain.ports.UserRepository;
+import com.jonathan.portfolio.order_management_system.application.ports.out.UserPort;
 
 public class RegisterUserUseCase {
-    private UserRepository userRepository;
+    private UserPort userPort;
 
-    public RegisterUserUseCase(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public RegisterUserUseCase(UserPort userPort) {
+        this.userPort = userPort;
     }
 
     public User execute(User user) {
-        return userRepository.saveUser(user);
+        return userPort.saveUser(user);
     }
 }

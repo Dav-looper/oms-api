@@ -1,19 +1,34 @@
 package com.jonathan.portfolio.order_management_system.infrastructure.adapters;
 
-import com.jonathan.portfolio.order_management_system.domain.ports.ProductPort;
+import com.jonathan.portfolio.order_management_system.application.ports.out.ProductPort;
 import com.jonathan.portfolio.order_management_system.domain.model.Product;
+import com.jonathan.portfolio.order_management_system.infrastructure.entities.MoneyEntity;
 import com.jonathan.portfolio.order_management_system.infrastructure.entities.ProductEntity;
+import com.jonathan.portfolio.order_management_system.infrastructure.mappers.ProductMapper;
 import com.jonathan.portfolio.order_management_system.infrastructure.repositories.JpaProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProductAdapter implements ProductPort {
-    private JpaProductRepository jpaProductRepository;
+    private final ProductMapper productMapper;
+    private final JpaProductRepository jpaProductRepository;
 
-    public ProductAdapter(JpaProductRepository jpaProductRepository) {
+    @Autowired
+    public ProductAdapter(JpaProductRepository jpaProductRepository, ProductMapper productMapper) {
         this.jpaProductRepository = jpaProductRepository;
+        this.productMapper = productMapper;
     }
 
     @Override
-    public ProductEntity save(Product product) {
-        return null;
+    public Product save(Product product) {
+        ProductEntity entity = new ProductEntity(
+                product.getId(),
+                product.getName(),
+                new MoneyEntity(product.getPrice().amount(), product.getCurrency()));
+
+        ProductEntity savedEntity = jpaProductRepository.save(entity);
+
+        return productMapper.jpaEntityToDomainEntity(savedEntity);
     }
 }
