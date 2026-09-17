@@ -10,7 +10,7 @@ import java.util.UUID;
 })
 public class ProductEntity {
     @Id
-    @Column(name = "id")
+    @Column(name = "product_id")
     private UUID id;
 
     @Column(nullable = false, length = 150)

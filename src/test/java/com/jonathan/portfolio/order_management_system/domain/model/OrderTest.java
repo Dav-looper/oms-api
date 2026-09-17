@@ -13,7 +13,7 @@ public class OrderTest {
     @Test
     void shouldCalculateTotalForMultipleItems() {
         //Arrange
-        User user = new User(UUID.randomUUID(), "David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
+        User user = new User("David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
         Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
         Product product2 = new Product("carne", new Money(BigDecimal.valueOf(13.00), Currency.getInstance(Locale.US)));
         OrderItem orderItem = new OrderItem(product1, 1, product1.getPrice());
@@ -35,7 +35,7 @@ public class OrderTest {
     @Test
     void shouldReturnZeroWhenOrderHasNoItems() {
         //Arrange
-        User user = new User(UUID.randomUUID(), "David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
+        User user = new User("David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
         Order order = new Order(UUID.randomUUID(), Currency.getInstance(Locale.US), user);
 
         Money resultadoEsperado = new Money(BigDecimal.valueOf(0.00), Currency.getInstance(Locale.US));
@@ -50,7 +50,7 @@ public class OrderTest {
     @Test
     void shouldMergeQuantitiesForDuplicatedProducts() {
         //Arrange
-        User user = new User(UUID.randomUUID(), "David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
+        User user = new User("David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
         Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
         OrderItem orderItem = new OrderItem(product1, 1, product1.getPrice());
         OrderItem orderItem2 = new OrderItem(product1, 1, product1.getPrice());
@@ -71,7 +71,7 @@ public class OrderTest {
     @Test
     void shouldAddQuantityToTheSameProductForDuplicatedProducts() {
         //Arrange
-        User user = new User(UUID.randomUUID(), "David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
+        User user = new User("David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
         Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
         OrderItem orderItem = new OrderItem(product1, 1, product1.getPrice());
         OrderItem orderItem2 = new OrderItem(product1, 1, product1.getPrice());
@@ -93,7 +93,7 @@ public class OrderTest {
     @Test
     void shouldPayOrderSuccessfully() {
         //Arrange
-        User user = new User(UUID.randomUUID(), "David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
+        User user = new User("David Armando", new Email("Rolando@gmail.com"), new Password("$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUWa"), Role.CUSTOMER);
         Product product1 = new Product("arroz", new Money(BigDecimal.valueOf(10.00), Currency.getInstance(Locale.US)));
         Product product2 = new Product("carne", new Money(BigDecimal.valueOf(13.00), Currency.getInstance(Locale.US)));
         OrderItem orderItem = new OrderItem(product1, 1, product1.getPrice());
